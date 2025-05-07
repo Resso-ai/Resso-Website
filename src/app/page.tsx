@@ -6,6 +6,7 @@ export default function Home() {
       <h1 className="text-5xl">Write you name below</h1>
       <p className="text-5xl">Hamza</p>
       <p className="text-5xl">Polina</p>
+      <p className="text-5xl">Devank</p>
     </div>
   );
 }
