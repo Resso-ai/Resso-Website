@@ -1,144 +1,150 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
- 
-import {
-  Sidebar,
-  SidebarHeader,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar"
- 
-// Career Tools items.
-const CTitems = [
-  {
-    title: "Resume Generator",
-    url: "#",
-    icon: Home,
-  },
-  {
-    title: "Cover Letter Generator",
-    url: "#",
-    icon: Home,
-  },
-  {
-    title: "Interview Preparation",
-    url: "#",
-    icon: Home,
-  },
-  {
-    title: "Interview Simulation",
-    url: "#",
-    icon: Home,
-  },
-  {
-    title: "Statement of Purpose",
-    url: "#",
-    icon: Home,
-  },
-  {
-    title: "History",
-    url: "#",
-    icon: Inbox,
-  },
-]
+"use client"
 
-// Account items.
-const Aitems = [
-  {
-    title: "Profile",
-    url: "#",
-    icon: Home,
-  },
-  {
-    title: "Account Selector",
-    url: "#",
-    icon: Home,
-  },
-  {
-    title: "Experience and Education",
-    url: "#",
-    icon: Home,
-  },
-  {
-    title: "Plan",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
-]
- 
-export function AppSidebar() {
+import type * as React from "react"
+import {
+  AudioWaveform,
+  BookOpen,
+  Bot,
+  Command,
+  Frame,
+  GalleryVerticalEnd,
+  Map,
+  PieChart,
+  Settings2,
+  Settings,
+  Calendar,
+  SquareTerminal,
+} from "lucide-react"
+import { NavMain } from "./nav-main"
+import { NavProjects } from "./nav-projects"
+import { TeamSwitcher } from "./team-switcher"
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from "@/components/ui/sidebar"
+
+// This is sample data.
+const data = {
+  teams: [
+    {
+      name: "ENG4U1",
+      logo: GalleryVerticalEnd,
+      plan: "Education",
+    },
+    {
+      name: "ICS4U1",
+      logo: AudioWaveform,
+      plan: "Education",
+    },
+    {
+      name: "MDM4U1",
+      logo: Command,
+      plan: "Education",
+    },
+    {
+      name: "Joe Doe",
+      logo: Command,
+      plan: "Personal",
+    },
+  ],
+  navMain: [
+    {
+      title: "Career Tools",
+      url: "#",
+      icon: SquareTerminal,
+      isActive: true,
+      items: [
+        {
+          title: "Interview Prep",
+          url: "#",
+        },
+        {
+          title: "Interview Simulaton",
+          url: "#",
+        },
+        {
+          title: "Resume Generator",
+          url: "#",
+        },
+        {
+          title: "Cover Letter Generator",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Tutoring",
+      url: "#",
+      icon: Bot,
+      items: [
+        {
+          title: "Math",
+          url: "#",
+        },
+        {
+          title: "English",
+          url: "#",
+        },
+        {
+          title: "Science",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Documentation",
+      url: "#",
+      icon: BookOpen,
+      items: [
+        {
+          title: "Introduction",
+          url: "#",
+        },
+        {
+          title: "Get Started",
+          url: "#",
+        },
+        {
+          title: "Tutorials",
+          url: "#",
+        },
+        {
+          title: "Changelog",
+          url: "#",
+        },
+      ],
+    },
+  ],
+  projects: [
+    {
+      name: "Experience and Education",
+      url: "#",
+      icon: Frame,
+    },
+    {
+      name: "Plan",
+      url: "#",
+      icon: Calendar,
+    },
+    {
+      name: "Settings",
+      url: "#",
+      icon: Settings,
+    },
+  ],
+}
+
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-      <Sidebar>
+    <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <div className="flex items-center justify-center px-4 py-4" style={{ backgroundColor: "#F04770" }}>
-          <img
-            src="/resso-ai.svg"
-            alt="CareerSuite Logo"
-          />
+        <div className="flex items-center justify-center px-2 py-4" >
+          <img src="/resso-ai.svg"/>
         </div>
+        <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
-        <div className="flex items-center gap-3 px-4 py-3 border-b">
-          <img
-            src="/profile-logo.png"
-            className="h-15 w-15 rounded-full object-cover"
-          />
-          <div>
-            <p className="text-xl font-medium text-gray-900">John Doe</p>
-            <p className="text-xs text-gray-500">johndoe@example.com</p>
-          </div>
-        </div>
-        <SidebarGroup>
-          <SidebarGroupLabel className=" text-3xl mt-2 mb-2" style={{ color: "#1D0B84" }}>Career Tools</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {CTitems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-          <SidebarGroupLabel className=" text-3xl mt-5 mb-2" style={{ color: "#1D0B84" }}>Account</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {Aitems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-          </SidebarGroup>
-
-        {/* Log Out Button */}
-        <div className="mt-auto px-4 py-4">
-          <button
-               className="w-full bg-[#F04770] text-white text-xl py-3 rounded-lg hover:bg-[#E03D62] hover:shadow-[0px 0px 15px 5px] transition-all duration-300"
-          >
-            Log Out
-          </button>
-        </div>
+        <NavMain items={data.navMain} />
+        <NavProjects projects={data.projects} />
       </SidebarContent>
+      <SidebarRail />
     </Sidebar>
   )
 }
