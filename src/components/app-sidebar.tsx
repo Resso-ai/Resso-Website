@@ -8,9 +8,6 @@ import {
   Command,
   Frame,
   GalleryVerticalEnd,
-  Map,
-  PieChart,
-  Settings2,
   Settings,
   Calendar,
   SquareTerminal,
@@ -26,7 +23,7 @@ const data = {
   user: {
     name: "JohnDoe",
     email: "JohnDoe@example.com",
-    avatar: "/avatars/johnDoe.jpg",
+    avatar: "/avatars/pfp.jpg",
   },
   teams: [
     {
@@ -58,6 +55,30 @@ const data = {
       isActive: true,
       items: [
         {
+          title: "Resume Builder",
+          url: "#",
+        },
+        {
+          title: "Cover Letter Generator",
+          url: "#",
+        },
+        {
+          title: "Portfolio Builder",
+          url: "#",
+        },
+        {
+          title: "Skills Assessment",
+          url: "#",
+        },
+      ],
+    },
+        {
+      title: "Interviews",
+      url: "#",
+      icon: SquareTerminal,
+      isActive: true,
+      items: [
+        {
           title: "Interview Prep",
           url: "#",
         },
@@ -66,15 +87,12 @@ const data = {
           url: "#",
         },
         {
-          title: "Resume Generator",
-          url: "#",
-        },
-        {
-          title: "Cover Letter Generator",
+          title: "Interview Feedback",
           url: "#",
         },
       ],
     },
+    
     {
       title: "Tutoring",
       url: "#",
@@ -95,24 +113,20 @@ const data = {
       ],
     },
     {
-      title: "Documentation",
+      title: "Community",
       url: "#",
       icon: BookOpen,
       items: [
         {
-          title: "Introduction",
+          title: "Forums",
           url: "#",
         },
         {
-          title: "Get Started",
+          title: "Student Groups",
           url: "#",
         },
         {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
+          title: "Events & Webinars",
           url: "#",
         },
       ],
