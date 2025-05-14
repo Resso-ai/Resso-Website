@@ -17,11 +17,17 @@ import {
 } from "lucide-react"
 import { NavMain } from "./nav-main"
 import { NavProjects } from "./nav-projects"
+import { NavUser } from "@/components/nav-user"
 import { TeamSwitcher } from "./team-switcher"
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from "@/components/ui/sidebar"
 
 // This is sample data.
 const data = {
+  user: {
+    name: "JohnDoe",
+    email: "JohnDoe@example.com",
+    avatar: "/avatars/johnDoe.jpg",
+  },
   teams: [
     {
       name: "ENG4U1",
@@ -135,7 +141,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <div className="flex items-center justify-center px-2 py-4" >
+        <div className="flex items-center justify-center px-2 py-4 mb-2" >
           <img src="/resso-ai.svg"/>
         </div>
         <TeamSwitcher teams={data.teams} />
@@ -144,6 +150,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={data.navMain} />
         <NavProjects projects={data.projects} />
       </SidebarContent>
+      <SidebarFooter>
+        <NavUser user={data.user} />
+      </SidebarFooter>
       <SidebarRail />
     </Sidebar>
   )

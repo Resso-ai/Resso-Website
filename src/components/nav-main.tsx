@@ -1,6 +1,6 @@
 "use client"
 
-import { ChevronRight, type LucideIcon } from "lucide-react"
+import { ChevronRight, PlusCircleIcon, type LucideIcon } from "lucide-react"
 
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import {
@@ -30,6 +30,13 @@ export function NavMain({
 }) {
   return (
     <SidebarGroup>
+            <SidebarMenuButton
+              tooltip="Quick Create"
+              className="min-w-8 bg-[#F04770] text-primary-foreground duration-200 ease-linear hover:bg-[#d94065] hover:text-primary-foreground active:bg-[#c43859] active:text-primary-foreground mb-4"
+            >
+              <PlusCircleIcon />
+              <span>Quick Create</span>
+            </SidebarMenuButton>
       <SidebarGroupLabel>Navigation</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
