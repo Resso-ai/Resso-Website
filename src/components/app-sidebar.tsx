@@ -6,11 +6,11 @@ import {
   BookOpen,
   Bot,
   Command,
-  Frame,
   GalleryVerticalEnd,
   Settings,
   Calendar,
   SquareTerminal,
+  School,
 } from "lucide-react"
 import { NavMain } from "./nav-main"
 import { NavProjects } from "./nav-projects"
@@ -136,7 +136,7 @@ const data = {
     {
       name: "Experience and Education",
       url: "#",
-      icon: Frame,
+      icon: School,
     },
     {
       name: "Plan",
@@ -155,7 +155,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <div className="flex items-center justify-center px-2 py-4 mb-2" >
+        <div className="flex items-center justify-center px-10 py-4 mb-2" >
           <img src="/resso-ai.svg"/>
         </div>
         <TeamSwitcher teams={data.teams} />

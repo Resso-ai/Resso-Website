@@ -32,12 +32,12 @@ export function NavMain({
     <SidebarGroup>
             <SidebarMenuButton
               tooltip="Quick Create"
-              className="min-w-8 bg-[#F04770] text-primary-foreground duration-200 ease-linear hover:bg-[#d94065] hover:text-primary-foreground active:bg-[#c43859] active:text-primary-foreground mb-4"
+              className="min-w-8 bg-[#1D0B84] text-primary-foreground duration-200 ease-linear hover:bg-[#d94065] hover:text-primary-foreground active:bg-[#c43859] active:text-primary-foreground mb-4" 
             >
               <PlusCircleIcon />
               <span>Quick Create</span>
             </SidebarMenuButton>
-      <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+      <SidebarGroupLabel>Platform</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible key={item.title} asChild defaultOpen={item.isActive} className="group/collapsible">
