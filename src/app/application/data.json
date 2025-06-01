@@ -1,0 +1,65 @@
+{
+  "presets": [
+    { 
+    "id": "1", 
+    "type": "Interview preparation",
+    "description": "description"
+    },
+    { 
+    "id": "2", 
+    "type": "Resume",
+    "description": "description"
+    },
+    { 
+    "id": "3", 
+    "type": "Cover letter",
+    "description": "description"
+    },
+        { 
+    "id": "4", 
+    "type": "Interview preparation",
+    "description": "description"
+    },
+    { 
+    "id": "5", 
+    "type": "Resume",
+    "description": "description"
+    },
+    { 
+    "id": "6", 
+    "type": "Cover letter",
+    "description": "description"
+    },
+    { 
+    "id": "7", 
+    "type": "Interview preparation",
+    "description": "description"
+    },
+    { 
+    "id": "8", 
+    "type": "Resume",
+    "description": "description"
+    },
+    { 
+    "id": "9", 
+    "type": "Cover letter",
+    "description": "description"
+    },
+        { 
+    "id": "10", 
+    "type": "Interview preparation",
+    "description": "description"
+    },
+    { 
+    "id": "11", 
+    "type": "Resume",
+    "description": "description"
+    },
+    { 
+    "id": "12", 
+    "type": "Cover letter",
+    "description": "description"
+    }
+
+  ]
+}

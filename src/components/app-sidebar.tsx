@@ -16,7 +16,7 @@ import { NavMain } from "./nav-main"
 import { NavProjects } from "./nav-projects"
 import { NavUser } from "@/components/nav-user"
 import { TeamSwitcher } from "./team-switcher"
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from "@/components/ui/sidebar"
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroupLabel, SidebarHeader, SidebarRail } from "@/components/ui/sidebar"
 
 // This is sample data.
 const data = {
@@ -135,7 +135,7 @@ const data = {
   projects: [
     {
       name: "Experience and Education",
-      url: "#",
+      url: "/experience",
       icon: School,
     },
     {
@@ -153,11 +153,14 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
+    
     <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
-        <div className="flex items-center justify-center px-10 py-4 mb-2" >
+      <SidebarGroupLabel className="py-4  mt-11">
+        <div className="flex items-center w-40 h-15 py-4 mb-10" >
           <img src="/resso-ai.svg"/>
         </div>
+      </SidebarGroupLabel>
+      <SidebarHeader>
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>

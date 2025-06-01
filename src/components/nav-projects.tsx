@@ -1,6 +1,7 @@
 "use client"
 
 import {type LucideIcon } from "lucide-react"
+import Link from 'next/link';
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -18,7 +19,7 @@ export function NavProjects({
     icon: LucideIcon
   }[]
 }) {
-  // const { isMobile } = useSidebar()
+  // const { isMobile } = useSidebar() .
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
@@ -34,6 +35,13 @@ export function NavProjects({
             </SidebarMenuButton>
           </SidebarMenuItem>
         ))}
+        <Link href="/application">
+          <SidebarMenuButton
+              className="min-w-8 bg-[#1D0B84] text-primary-foreground duration-200 ease-linear hover:bg-[#3A2FA3] hover:text-primary-foreground active:bg-[#160A66] active:text-primary-foreground mb-4" 
+            >
+              <span className="flex justify-center">Application</span>
+            </SidebarMenuButton>
+            </Link>
       </SidebarMenu>
     </SidebarGroup>
   )
