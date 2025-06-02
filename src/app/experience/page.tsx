@@ -118,7 +118,7 @@ export default function ExperienceEducationPage() {
   }
 
   return (
-    <div className="max-w-screen-lg mx-auto px-4 py-8 space-y-10">
+    <div className="w-full max-w-7xl mx-auto px-6 py-10 space-y-10">
       <div>
         <h1 className="text-3xl font-semibold mb-6">Experience</h1>
         {error && errorSection === "experience" && <p className="text-red-500 text-sm mb-2">{error}</p>}
