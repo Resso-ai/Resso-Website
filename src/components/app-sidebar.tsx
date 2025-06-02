@@ -135,7 +135,7 @@ const data = {
   projects: [
     {
       name: "Experience and Education",
-      url: "#",
+      url: "/experience",
       icon: School,
     },
     {
