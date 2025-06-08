@@ -118,115 +118,118 @@ export default function ExperienceEducationPage() {
   }
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-6 py-10 space-y-10">
-      <div>
-        <h1 className="text-3xl font-semibold mb-6">Experience</h1>
-        {error && errorSection === "experience" && <p className="text-red-500 text-sm mb-2">{error}</p>}
-        <Card className="mb-6">
-          <CardContent className="space-y-4 p-6">
-            <Input placeholder="Role (e.g., Math Tutor)" value={expTitle} onChange={(e) => setExpTitle(e.target.value)} />
-            <Textarea placeholder="Description of what you did" value={expDesc} onChange={(e) => setExpDesc(e.target.value)} />
-            <Button onClick={addExperience}>Add Experience</Button>
-          </CardContent>
-        </Card>
-        <div className="space-y-4">
-          {experiences.map((exp, idx) => (
-            <Card key={idx} className="relative">
-              <CardContent className="p-4">
-                <button className="absolute top-2 right-2 text-muted-foreground" onClick={() => removeExperience(idx)}>
-                  <X size={16} />
-                </button>
-                <h2 className="font-medium text-lg">{exp.title}</h2>
-                <p className="text-sm text-muted-foreground">{exp.description}</p>
-              </CardContent>
-            </Card>
-          ))}
+    <div className="w-full flex justify-center px-6 py-10">
+      <div className="w-[600px] space-y-10">
+        <div>
+          <h1 className="text-3xl font-semibold mb-6">Experience</h1>
+          {error && errorSection === "experience" && <p className="text-red-500 text-sm mb-2">{error}</p>}
+          <Card className="mb-6">
+            <CardContent className="space-y-4 p-6">
+              <Input placeholder="Role (e.g., Math Tutor)" value={expTitle} onChange={(e) => setExpTitle(e.target.value)} />
+              <Textarea placeholder="Description of what you did" value={expDesc} onChange={(e) => setExpDesc(e.target.value)} />
+              <Button onClick={addExperience}>Add Experience</Button>
+            </CardContent>
+          </Card>
+          <div className="space-y-4">
+            {experiences.map((exp, idx) => (
+              <Card key={idx} className="relative">
+                <CardContent className="p-4">
+                  <button className="absolute top-2 right-2 text-muted-foreground" onClick={() => removeExperience(idx)}>
+                    <X size={16} />
+                  </button>
+                  <h2 className="font-medium text-lg">{exp.title}</h2>
+                  <p className="text-sm text-muted-foreground">{exp.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
-      </div>
 
-      <div>
-        <h1 className="text-3xl font-semibold mb-6">Education</h1>
-        {error && errorSection === "education" && <p className="text-red-500 text-sm mb-2">{error}</p>}
-        <Card className="mb-6">
-          <CardContent className="space-y-4 p-6">
-            <Input placeholder="School Name" value={eduSchool} onChange={(e) => setEduSchool(e.target.value)} />
-            <Input placeholder="Graduation Date (e.g., June 2026)" value={eduGrad} onChange={(e) => setEduGrad(e.target.value)} />
-            <Input placeholder="Program or Diploma (e.g., OSSD)" value={eduProgram} onChange={(e) => setEduProgram(e.target.value)} />
-            <Button onClick={addEducation}>Add Education</Button>
-          </CardContent>
-        </Card>
-        <div className="space-y-4">
-          {education.map((edu, idx) => (
-            <Card key={idx} className="relative">
-              <CardContent className="p-4">
-                <button className="absolute top-2 right-2 text-muted-foreground" onClick={() => removeEducation(idx)}>
-                  <X size={16} />
-                </button>
-                <h2 className="font-medium text-lg">{edu.school}</h2>
-                <p className="text-sm">{edu.program}</p>
-                <p className="text-sm text-muted-foreground">Graduation: {edu.graduation}</p>
-              </CardContent>
-            </Card>
-          ))}
+        <div>
+          <h1 className="text-3xl font-semibold mb-6">Education</h1>
+          {error && errorSection === "education" && <p className="text-red-500 text-sm mb-2">{error}</p>}
+          <Card className="mb-6">
+            <CardContent className="space-y-4 p-6">
+              <Input placeholder="School Name" value={eduSchool} onChange={(e) => setEduSchool(e.target.value)} />
+              <Input placeholder="Graduation Date (e.g., June 2026)" value={eduGrad} onChange={(e) => setEduGrad(e.target.value)} />
+              <Input placeholder="Program or Diploma (e.g., OSSD)" value={eduProgram} onChange={(e) => setEduProgram(e.target.value)} />
+              <Button onClick={addEducation}>Add Education</Button>
+            </CardContent>
+          </Card>
+          <div className="space-y-4">
+            {education.map((edu, idx) => (
+              <Card key={idx} className="relative">
+                <CardContent className="p-4">
+                  <button className="absolute top-2 right-2 text-muted-foreground" onClick={() => removeEducation(idx)}>
+                    <X size={16} />
+                  </button>
+                  <h2 className="font-medium text-lg">{edu.school}</h2>
+                  <p className="text-sm">{edu.program}</p>
+                  <p className="text-sm text-muted-foreground">Graduation: {edu.graduation}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
-      </div>
 
-      <div>
-        <h1 className="text-3xl font-semibold mb-6">Skills</h1>
-        {error && errorSection === "skills" && <p className="text-red-500 text-sm mb-2">{error}</p>}
-        <Card className="mb-6">
-          <CardContent className="space-y-4 p-6">
-            <Input placeholder="Add a skill (e.g., Python, Excel)" value={skill} onChange={(e) => setSkill(e.target.value)} />
-            <Button onClick={addSkill}>Add Skill</Button>
-          </CardContent>
-        </Card>
-        <div className="flex flex-wrap gap-2">
-          {skills.map((s, idx) => (
-            <span key={idx} className="bg-muted text-sm px-3 py-1 rounded-full flex items-center gap-2">
-              {s}
-              <button onClick={() => removeSkill(idx)}><X size={12} /></button>
-            </span>
-          ))}
+        <div>
+          <h1 className="text-3xl font-semibold mb-6">Skills</h1>
+          {error && errorSection === "skills" && <p className="text-red-500 text-sm mb-2">{error}</p>}
+          <Card className="mb-6">
+            <CardContent className="space-y-4 p-6">
+              <Input placeholder="Add a skill (e.g., Python, Excel)" value={skill} onChange={(e) => setSkill(e.target.value)} />
+              <Button onClick={addSkill}>Add Skill</Button>
+            </CardContent>
+          </Card>
+          <div className="flex flex-wrap gap-2">
+            {skills.map((s, idx) => (
+              <span key={idx} className="bg-muted text-sm px-3 py-1 rounded-full flex items-center gap-2">
+                {s}
+                <button onClick={() => removeSkill(idx)}><X size={12} /></button>
+              </span>
+            ))}
+          </div>
         </div>
-      </div>
 
-      <div>
-        <h1 className="text-3xl font-semibold mb-6">Achievements</h1>
-        {error && errorSection === "achievements" && <p className="text-red-500 text-sm mb-2">{error}</p>}
-        <Card className="mb-6">
-          <CardContent className="space-y-4 p-6">
-            <Input placeholder="Achievement (e.g., 2x Math Contest Winner)" value={achievement} onChange={(e) => setAchievement(e.target.value)} />
-            <Button onClick={addAchievement}>Add Achievement</Button>
-          </CardContent>
-        </Card>
-        <div className="flex flex-wrap gap-2">
-          {achievements.map((a, idx) => (
-            <span key={idx} className="bg-muted text-sm px-3 py-1 rounded-full flex items-center gap-2">
-              {a}
-              <button onClick={() => removeAchievement(idx)}><X size={12} /></button>
-            </span>
-          ))}
+        <div>
+          <h1 className="text-3xl font-semibold mb-6">Achievements</h1>
+          {error && errorSection === "achievements" && <p className="text-red-500 text-sm mb-2">{error}</p>}
+          <Card className="mb-6">
+            <CardContent className="space-y-4 p-6">
+              <Input placeholder="Achievement (e.g., 2x Math Contest Winner)" value={achievement} onChange={(e) => setAchievement(e.target.value)} />
+              <Button onClick={addAchievement}>Add Achievement</Button>
+            </CardContent>
+          </Card>
+          <div className="flex flex-wrap gap-2">
+            {achievements.map((a, idx) => (
+              <span key={idx} className="bg-muted text-sm px-3 py-1 rounded-full flex items-center gap-2">
+                {a}
+                <button onClick={() => removeAchievement(idx)}><X size={12} /></button>
+              </span>
+            ))}
+          </div>
         </div>
-      </div>
 
-      <div>
-        <h1 className="text-3xl font-semibold mb-6">Interests</h1>
-        {error && errorSection === "interests" && <p className="text-red-500 text-sm mb-2">{error}</p>}
-        <Card className="mb-6">
-          <CardContent className="space-y-4 p-6">
-            <Input placeholder="Interest (e.g., STEM, Basketball)" value={interest} onChange={(e) => setInterest(e.target.value)} />
-            <Button onClick={addInterest}>Add Interest</Button>
-          </CardContent>
-        </Card>
-        <div className="flex flex-wrap gap-2">
-          {interests.map((i, idx) => (
-            <span key={idx} className="bg-muted text-sm px-3 py-1 rounded-full flex items-center gap-2">
-              {i}
-              <button onClick={() => removeInterest(idx)}><X size={12} /></button>
-            </span>
-          ))}
+        <div>
+          <h1 className="text-3xl font-semibold mb-6">Interests</h1>
+          {error && errorSection === "interests" && <p className="text-red-500 text-sm mb-2">{error}</p>}
+          <Card className="mb-6">
+            <CardContent className="space-y-4 p-6">
+              <Input placeholder="Interest (e.g., STEM, Basketball)" value={interest} onChange={(e) => setInterest(e.target.value)} />
+              <Button onClick={addInterest}>Add Interest</Button>
+            </CardContent>
+          </Card>
+          <div className="flex flex-wrap gap-2">
+            {interests.map((i, idx) => (
+              <span key={idx} className="bg-muted text-sm px-3 py-1 rounded-full flex items-center gap-2">
+                {i}
+                <button onClick={() => removeInterest(idx)}><X size={12} /></button>
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </div>
   )
 }
+
