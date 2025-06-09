@@ -120,3 +120,7 @@
     @apply bg-background text-foreground;
   }
 }
+.custom-min-width {
+  @apply flex flex-col items-center justify-center bg-white;
+  min-width: calc(100vw - 200px);
+}
