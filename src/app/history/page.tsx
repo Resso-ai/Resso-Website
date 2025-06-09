@@ -6,6 +6,7 @@ import { Card, CardContent, CardTitle, CardDescription } from "@/components/ui/c
 import { Badge } from "@/components/ui/badge"
 import React from 'react';
 import data from "@/app/history/data.json"
+import { Combobox } from "@/components/ui/combobox"
 interface HistoryItem {
   company: string;
   date: string;
@@ -13,20 +14,32 @@ interface HistoryItem {
   service: string;
   content: string;
 }
-
+const serviceColors: Record<string, string> = {
+  "Cover Letter": "#f04770",
+  "Resume": "#06d7a0",
+  "Interview Preparation": "#2c1b89",
+};
 
 export default function Home() {
-  const [selectedItem, setSelectedItem] = useState<HistoryItem | null>(null); // Set the type to HistoryItem | null
+  const [selectedItem, setSelectedItem] = useState<HistoryItem | null>(null);
+  const [filter, setFilter] = useState<string>("All");
 
   useEffect(() => {
     if (data.history.length > 0) {
-      setSelectedItem(data.history[0]) // Set the most recent item (first item in the array)
+      setSelectedItem(data.history[0]);
     }
   }, []);
 
   const handleClick = (item: HistoryItem) => {
-    setSelectedItem(item); // Set the clicked item in state
+    setSelectedItem(item);
   }
+
+  const uniqueServices = ["All", ...Array.from(new Set(data.history.map(item => item.service)))];
+
+  const filteredData = filter === "All"
+    ? data.history
+    : data.history.filter(item => item.service === filter);
+
   return (
     <div className="flex">
     <div className="flex-1">
@@ -36,7 +49,12 @@ export default function Home() {
           ["History", "/history"],
         ]}
       />
-        {data.history.map((item) => (
+      <Combobox
+        options={uniqueServices.map(service => ({ label: service, value: service }))}
+        selectedValue={filter}
+        onChange={setFilter}
+      />
+        {filteredData.map((item) => (
           <Card key={item.company} className="hover:shadow-lg hover:ring-2 hover:ring-accent cursor-pointer max-w-[300]" onClick={() => handleClick(item)}>
             <CardContent className="flex flex-col gap-2">
               <div className="flex justify-between items-center">
@@ -44,7 +62,7 @@ export default function Home() {
                 <span className="text-xs text-gray-500">{item.date}</span>
               </div>
               <CardDescription className="text-sm text-gray-700 truncate">{item.description}</CardDescription>
-              <Badge className="mt-2">{item.service}</Badge>
+              <Badge style={{backgroundColor:serviceColors[item.service] || "bg-gray-300 text-black"}} className="mt-2">{item.service}</Badge>
             </CardContent>
           </Card>
         ))}
