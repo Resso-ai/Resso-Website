@@ -4,6 +4,7 @@ import { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import Link from "next/link"
 
 import { SiteHeader } from "@/components/site-header"
 import { Button } from "@/components/ui/button"
@@ -28,6 +29,15 @@ const data = {
     { input: "Description", validation: z.string().min(1, { message: "Please input a description." }) },
   ]
 }
+const analyticsOptions = [
+  "Hire Chance Score", 
+  "Answers", 
+  "Sentiment", 
+  "Pace", 
+  "Decisiveness", 
+  "Repetitive Language", 
+  "Inclusiveness"
+]
 
 const dynamicSchema = data.inputInfo.reduce<Record<string, z.ZodType>>((acc, { input, validation }) => {
   acc[input] = validation
@@ -37,6 +47,13 @@ const dynamicSchema = data.inputInfo.reduce<Record<string, z.ZodType>>((acc, { i
 const formSchema = z.object(dynamicSchema)
 
 export default function ProfileForm() {
+  const [checkedStates, setCheckedStates] = useState<Record<string, boolean>>({})
+  const handleCheckboxChange = (label: string) => {
+    setCheckedStates((prev) => ({
+      ...prev,
+      [label]: !prev[label], // Toggle the specific checkbox state
+    }))
+  }
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -64,8 +81,15 @@ export default function ProfileForm() {
   
   return (
     <div>
-        <SiteHeader />
-        <div className="w-full min-h-screenp p-8">
+        <SiteHeader
+          breadcrumbs={[
+            ["Home", "/"],
+            ["Application", "/application"],
+            ["Create New", "/application/create-new"],
+          ]}
+        />
+    <div className="custom-min-width">
+      <div className="w-[600px]">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             {data.inputInfo.map((fieldData, index) => (
@@ -75,7 +99,7 @@ export default function ProfileForm() {
                 name={fieldData.input}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className=" text-2xl">{fieldData.input}</FormLabel>
+                    <FormLabel className=" text-2xl mt-4">{fieldData.input}</FormLabel>
                     <FormControl>
                       {fieldData.input === "Description" ? (
                         <Textarea placeholder={fieldData.input} {...field} />
@@ -89,7 +113,7 @@ export default function ProfileForm() {
               />
             ))}
 
-            <div className="space-y-2">
+            <FormItem className="space-y-2">
               <FormLabel className=" text-2xl">Logic</FormLabel>
               {logicItems.map((item, index) => (
                 <div className="flex items-center space-x-2" key={index}>
@@ -104,39 +128,35 @@ export default function ProfileForm() {
                 </div>
               ))}
               <Button variant="outline" onClick={addLogicItem}>Add</Button>
-            </div>
-
+            </FormItem>
+            
+            <FormItem>
+              <FormLabel className=" text-2xl mt-4">Filler Words</FormLabel>
+                <Textarea placeholder={"Filler Words"} />
+              <FormMessage />
+            </FormItem>
               <FormLabel className=" text-2xl">Analytics</FormLabel>
               <div className="space-y-1">
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="ana1" />
-                  <Label htmlFor="ana1">Hire ChanceTM Score</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="ana2" />
-                  <Label htmlFor="ana2">Answers</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="ana3" />
-                  <Label htmlFor="ana3">Sentiment</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="ana4" />
-                  <Label htmlFor="ana4">Pace</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="ana5" />
-                  <Label htmlFor="ana5">Decisiveness</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="ana6" />
-                  <Label htmlFor="ana6">Repetitive Language</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="ana7" />
-                  <Label htmlFor="ana7">Inclusiveness</Label>
-                </div>
+                {analyticsOptions.map((label, index) => (
+                  <div className="space-y-2" key={index}>
+                    <div className="flex items-center space-x-2">
+                      <Checkbox 
+                        id={`ana${index + 1}`} 
+                        checked={checkedStates[label] || false} 
+                        onCheckedChange={() => handleCheckboxChange(label)} 
+                      />
+                      <Label htmlFor={`ana${index + 1}`}>{label}</Label>
+                    </div>
+
+                    {checkedStates[label] && (
+                      <div className="mt-2">
+                        <Input placeholder="Enter passing grade"/>
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
+
 
             {/* Overview Report Toggle */}
             <div className="flex items-center justify-between">
@@ -146,12 +166,15 @@ export default function ProfileForm() {
 
             {/* Action Buttons: Save / Cancel */}
             <div className="flex justify-end space-x-2">
-              <Button variant="outline">Cancel</Button>
+              <Button variant="outline">
+                <Link href="/application">Cancel</Link>
+              </Button>
               <Button type="submit">Save</Button>
             </div>
           </form>
         </Form>
         </div>
+    </div>
     </div>
   )
 }

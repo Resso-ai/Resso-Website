@@ -11,6 +11,7 @@ import {
   Calendar,
   SquareTerminal,
   School,
+  History,
 } from "lucide-react"
 import { NavMain } from "./nav-main"
 import { NavProjects } from "./nav-projects"
@@ -142,6 +143,11 @@ const data = {
       name: "Plan",
       url: "#",
       icon: Calendar,
+    },
+    {
+      name: "History",
+      url: "/history",
+      icon: History,
     },
     {
       name: "Settings",

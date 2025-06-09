@@ -6,7 +6,12 @@ import { Card, CardTitle, CardDescription } from "@/components/ui/card"
 export default function Home() {
   return (
     <>
-      <SiteHeader />
+      <SiteHeader
+        breadcrumbs={[
+          ["Home", "/"],
+          ["Application", "/application"],
+        ]}
+      />
       <div className="flex flex-row flex-wrap p-4">
         <Link
           href="/application/create-project"
