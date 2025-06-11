@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import React from 'react';
 import data from "@/app/history/data.json"
 import { Combobox } from "@/components/ui/combobox"
+import { Separator } from "@radix-ui/react-separator"
 interface HistoryItem {
   company: string;
   date: string;
@@ -55,7 +56,7 @@ export default function Home() {
         onChange={setFilter}
       />
         {filteredData.map((item) => (
-          <Card key={item.company} className="hover:shadow-lg hover:ring-2 hover:ring-accent cursor-pointer max-w-[300]" onClick={() => handleClick(item)}>
+          <Card key={item.company} className="rounded-none border-none shadow-none cursor-pointer max-w-[300]" onClick={() => handleClick(item)}>
             <CardContent className="flex flex-col gap-2">
               <div className="flex justify-between items-center">
                 <CardTitle>{item.company}</CardTitle>
@@ -64,6 +65,10 @@ export default function Home() {
               <CardDescription className="text-sm text-gray-700 truncate">{item.description}</CardDescription>
               <Badge style={{backgroundColor:serviceColors[item.service] || "bg-gray-300 text-black"}} className="mt-2">{item.service}</Badge>
             </CardContent>
+            <Separator
+            orientation="horizontal"
+            className="data-[orientation=horizontal]:h-0.5 bg-gray-200 mx-auto w-65 rounded"
+          />
           </Card>
         ))}
         </div>

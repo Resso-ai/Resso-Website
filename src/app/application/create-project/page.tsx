@@ -36,7 +36,8 @@ const analyticsOptions = [
   "Pace", 
   "Decisiveness", 
   "Repetitive Language", 
-  "Inclusiveness"
+  "Inclusiveness",
+  "Filler Words"
 ]
 
 const dynamicSchema = data.inputInfo.reduce<Record<string, z.ZodType>>((acc, { input, validation }) => {
@@ -128,12 +129,6 @@ export default function ProfileForm() {
                 </div>
               ))}
               <Button variant="outline" onClick={addLogicItem}>Add</Button>
-            </FormItem>
-            
-            <FormItem>
-              <FormLabel className=" text-2xl mt-4">Filler Words</FormLabel>
-                <Textarea placeholder={"Filler Words"} />
-              <FormMessage />
             </FormItem>
               <FormLabel className=" text-2xl">Analytics</FormLabel>
               <div className="space-y-1">

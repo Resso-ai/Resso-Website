@@ -154,6 +154,11 @@ const data = {
       url: "#",
       icon: Settings,
     },
+        {
+      name: "Application",
+      url: "/application",
+      icon: Settings,
+    },
   ],
 }
 

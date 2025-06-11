@@ -47,7 +47,7 @@ export function Combobox({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={cn(width, "justify-between")}
+          className={cn(width, "justify-between rounded-none")}
         >
           {selectedValue
             ? options.find((opt) => opt.value === selectedValue)?.label

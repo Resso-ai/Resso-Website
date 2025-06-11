@@ -1,7 +1,7 @@
 "use client"
 
 import {type LucideIcon } from "lucide-react"
-import Link from 'next/link';
+import { usePathname } from "next/navigation"
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -19,29 +19,29 @@ export function NavProjects({
     icon: LucideIcon
   }[]
 }) {
-  // const { isMobile } = useSidebar() .
+  const pathname = usePathname();
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
       <SidebarGroupLabel>Account</SidebarGroupLabel>
       <SidebarMenu>
-        {projects.map((item) => (
-          <SidebarMenuItem key={item.name}>
-            <SidebarMenuButton asChild>
-              <a href={item.url}>
-                <item.icon />
-                <span>{item.name}</span>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        ))}
-        <Link href="/application">
-          <SidebarMenuButton
-              className="min-w-8 bg-[#1D0B84] text-primary-foreground duration-200 ease-linear hover:bg-[#3A2FA3] hover:text-primary-foreground active:bg-[#160A66] active:text-primary-foreground mb-4" 
-            >
-              <span className="flex justify-center">Application</span>
-            </SidebarMenuButton>
-            </Link>
+{projects.map((item) => {
+          const isActive = pathname === item.url;
+
+          return (
+            <SidebarMenuItem key={item.name}>
+              <SidebarMenuButton
+                asChild
+                className={isActive ? "bg-[#1D0B84] hover:bg-[#1D0B84] text-accent" : ""}
+              >
+                <a href={item.url} className="flex items-center gap-2">
+                  <item.icon className={isActive ? "text-white hover:text-white" : ""}/>
+                  <span className={isActive ? "bg-[#1D0B84] text-accent" : ""}>{item.name}</span>
+                </a>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          );
+        })}
       </SidebarMenu>
     </SidebarGroup>
   )
