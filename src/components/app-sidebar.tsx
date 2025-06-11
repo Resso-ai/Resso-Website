@@ -157,7 +157,7 @@ const data = {
         {
       name: "Application",
       url: "/application",
-      icon: Settings,
+      icon: BookOpen,
     },
   ],
 }
